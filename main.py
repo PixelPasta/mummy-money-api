@@ -24,7 +24,7 @@ MATA_REACTION = {
 async def root():
     return {'message':'Mummy budget tracker is running.'}
 
-@app.get("/expense")
+@app.get("/expense/")
 async def get_expense():
     return expenses
 
