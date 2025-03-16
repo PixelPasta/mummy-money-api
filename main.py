@@ -4,6 +4,8 @@ import json
 import google.generativeai as genai
 import httpx  # Importing httpx for making HTTP requests
 
+
+
 genai.configure(api_key='AIzaSyDqYsEaiK6lSPAfncUnn-GVbZrTl3UT6IU')
 model = genai.GenerativeModel(model_name='gemini-2.0-flash')
 
