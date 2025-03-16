@@ -46,3 +46,13 @@ async def add_expense(amount:int, description:str='Unknown'):
         response = random.choice(MATA_REACTION["bad"])
 
     return {"message": response, "total_spent": expenses["total"]}
+
+@app.delete("/reset_expenses/")
+async def reset_expenses():
+    global expenses
+    expenses = {'total':0, 'logs':[]}
+
+    with open(EXPENSE_FILE, 'w') as f:
+        json.dump(expenses,f)
+
+    return {'messages':'All expenses have been reset.'}
