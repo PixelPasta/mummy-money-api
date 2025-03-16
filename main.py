@@ -4,6 +4,8 @@ import random
 import google.generativeai as genai
 
 
+genai.configure(api_key=GEMINI_API_KEY)
+
 
 
 app = FastAPI()
