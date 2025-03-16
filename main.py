@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 import json
 import google.generativeai as genai
 import httpx  # Importing httpx for making HTTP requests
@@ -69,10 +70,11 @@ async def add_expense(amount: int, description: str = 'Unknown'):
             callback_url = "http://example.com/webhook"  # Replace with the actual URL
             await client.get(callback_url, params={"amount": amount, "description": description})
         except Exception as e:
-            return {"error": f"Failed to send data to webhook: {str(e)}"}
+            print(f"Failed to send data to webhook: {str(e)}")  # Logging the error
 
-    return {"message": response, "total_spent": expenses["total"]}
-
+    # Redirecting to localhost:3000 with the generated reaction
+    redirect_url = f"http://localhost:3000/?reaction={response}"
+    return RedirectResponse(url=redirect_url)
 
 @app.delete("/reset_expenses/")
 async def reset_expenses():
