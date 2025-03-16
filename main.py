@@ -3,8 +3,12 @@ import json
 import google.generativeai as genai
 
 
-genai.configure(api_key=GEMINI_API_KEY)
+genai.configure(api_key='GEMINI_API_KEY')
 model = genai.GenerativeModel(model_name='gemini-2.0-flash')
+
+def categorise_expense(amount:int, desciption:str):
+    if amount < 0:
+        raise ValueError('Amount must be valid.')
 
 def get_mummy_response(amount:int, description:str) -> str:
     if amount < 0:
@@ -24,7 +28,7 @@ def get_mummy_response(amount:int, description:str) -> str:
     The Child spent {amount} for the purpose of {description}.
 
     React like an Angry middle-aged middle-class mother and you responses should all be in
-    hinglish and concise in less than 10 words
+    hinglish and concise in less than 10 words .
     """
 
     response = model.generate_content(prompt)
@@ -53,7 +57,7 @@ async def root():
 async def get_expense():
     return expenses
 
-@app.post("/add_expense/")
+@app.get("/add_expense/")
 async def add_expense(amount:int, description:str='Unknown'):
     
     global expenses
