@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 import json
 import random
+import google.generativeai as genai
+
+
+
 
 app = FastAPI()
 
