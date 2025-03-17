@@ -4,7 +4,9 @@ import json
 import google.generativeai as genai
 import httpx  # Importing httpx for making HTTP requests
 
-genai.configure(api_key='AIzaSyDqYsEaiK6lSPAfncUnn-GVbZrTl3UT6IU')
+
+
+genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel(model_name='gemini-2.0-flash')
 
 def get_mummy_response(amount: int, description: str) -> str:
