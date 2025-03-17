@@ -73,7 +73,7 @@ async def add_expense(amount: int, description: str = 'Unknown'):
             print(f"Failed to send data to webhook: {str(e)}")  # Logging the error
 
     # Redirecting to localhost:3000 with the generated reaction
-    redirect_url = f"http://localhost:3000/?reaction={response}"
+    redirect_url = f"http://localhost:3000/reaction?react={response}"
     return RedirectResponse(url=redirect_url)
 
 @app.delete("/reset_expenses/")
