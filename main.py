@@ -4,9 +4,7 @@ import json
 import google.generativeai as genai
 import httpx  # Importing httpx for making HTTP requests
 
-
-
-genai.configure(api_key=GEMINI_API_KEY)
+genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel(model_name='gemini-2.0-flash')
 
 def get_mummy_response(amount: int, description: str) -> str:
@@ -75,7 +73,7 @@ async def add_expense(amount: int, description: str = 'Unknown'):
             print(f"Failed to send data to webhook: {str(e)}")  # Logging the error
 
     # Redirecting to localhost:3000 with the generated reaction
-    redirect_url = f"http://localhost:3000/reaction?react={response}"
+    redirect_url = f"https://frontend-lake-eight-80.vercel.app/reaction?react={response}"
     return RedirectResponse(url=redirect_url)
 
 @app.delete("/reset_expenses/")
